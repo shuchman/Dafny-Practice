@@ -1,26 +1,4 @@
-/*
-	Goal: implement correctly, efficiently, clearly; no need to document the proof obligations
 
-	Important Notes:
-	
-	1) the type "string" in Dafny is a syntactic sugar for a sequence of characters ("seq<char>")
-	2) the text is expected to be significantly longer than the pattern
-	3) please state the time and space complexities of your algorithm
-	4) up to 50% of the grade could be dedicated to complexity of the algorithm / efficiency of the implementation
-	   [meaning: a naive O(|text|*|pattern|)-time loop making |text|-|pattern| sequence comparisons is highly discouraged]
-	5) if you're implementing some known/published algorithm, please state the sources clearly, including all relevant links
-	6) we haven't learned it, but curiously, Dafny supports "set comprehension",
-	   such that this method could be implemented with a single assignment:
-	   
-	   "offsets := set i | 0 <= i <= |text|-|pattern| && text[i..i+|pattern|] == pattern;"
-	   
-	   naturally, any implementation making such magical shortcuts is not accaptable
-
-	In case you are making a concious choice between alternative algorithms, where the superiority of the complexity may depend
-	on the frequency of the occurrences or other properties of the input, you're encouraged to justify this choice in writing;
-	questions regarding the preference between known algorithms or potential competing aspects of complexity will not be answered;
-	the floor is yours to make a choice and justify it; enjoy!
-*/
 method {:verify true} FindAllOccurrences(text: string, pattern: string) returns (offsets: set<nat>)
 	ensures forall i :: i in offsets ==> i + |pattern| <= |text|
 	ensures forall i :: 0 <= i <= |text| - |pattern| ==> (text[i..i+|pattern|] == pattern <==> i in offsets)
